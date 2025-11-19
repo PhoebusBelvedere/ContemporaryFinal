@@ -1,5 +1,8 @@
-﻿namespace ContemporaryFinal
+﻿
+
+namespace ContemporaryFinal
 {
+    
     public class GroupMember
     {
         public int Id { get; set; }

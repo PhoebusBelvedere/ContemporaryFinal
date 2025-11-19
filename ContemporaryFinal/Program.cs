@@ -1,21 +1,35 @@
+using ContemporaryFinal
+using Microsoft.EntityFrameworkCore;
+using NSwag.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
+builder.Services.ContemporaryFinalDbContext<DbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddOpenApiDocument(config =>
+{
+    config.Title = "ContemporaryFinal API";
+    
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//Apply EF Core migrations automatically 
+using (var scope = app.Services.CreateScope())
 {
-    app.MapOpenApi();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();     
+    SeedData.Initialize(db);   
 }
 
-app.UseHttpsRedirection();
+//Enable NSwag UI
+app.UseOpenApi();
+app.UseSwaggerUi3();
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
