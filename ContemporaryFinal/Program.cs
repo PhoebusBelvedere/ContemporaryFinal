@@ -1,4 +1,5 @@
 using ContemporaryFinal;
+using ContemporaryFinal.Context_Methods;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<GroupMemberContext>();
 
 var app = builder.Build();
 
