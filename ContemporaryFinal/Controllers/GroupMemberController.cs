@@ -9,7 +9,7 @@ namespace ContemporaryFinal.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return;
+            
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace ContemporaryFinal.Controllers
         {
             return;
         }
-
+       
 
 
 

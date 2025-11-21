@@ -1,35 +1,25 @@
-using ContemporaryFinal
+using ContemporaryFinal;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using NSwag.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-
-builder.Services.ContemporaryFinalDbContext<DbContext>(options =>
+builder.Services.AddDbContext<CF_DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddOpenApiDocument(config =>
-{
-    config.Title = "ContemporaryFinal API";
-    
-});
+// Add controllers
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-//Apply EF Core migrations automatically 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();     
-    SeedData.Initialize(db);   
-}
-
-//Enable NSwag UI
-app.UseOpenApi();
-app.UseSwaggerUi3();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
 app.UseAuthorization();
 
 app.MapControllers();
