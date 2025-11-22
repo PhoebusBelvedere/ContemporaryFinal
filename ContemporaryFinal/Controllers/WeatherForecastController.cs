@@ -11,16 +11,30 @@ namespace ContemporaryFinal.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         ];
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet]
+        public IActionResult Get(int id)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var members = _context.GetAllMembers();
+            return Ok(members);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var member = _context.GetMemberById(id);
+            return Ok(member);
+        }
+
+        [HttpPost]
+        public IActionResult Post(GroupMember member)
+        {
+            return;
+        }
+
+        [HttpPut("{id?}")]
+        public IActionResult Put(GroupMember member)
+        {
+            
         }
     }
 }
