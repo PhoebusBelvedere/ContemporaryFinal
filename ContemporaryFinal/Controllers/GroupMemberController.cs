@@ -17,7 +17,7 @@ namespace ContemporaryFinal.Controllers
 
 
         [HttpGet]
-        public IActionResult Get(int id)
+        public IActionResult Get()
         {
             var members = _context.GetAllMembers();
             return Ok(members);
@@ -27,35 +27,57 @@ namespace ContemporaryFinal.Controllers
         public IActionResult GetById(int id)
         {
             var member = _context.GetMemberById(id);
+            if (member == null)
+            {
+                return NotFound(id);
+            }
             return Ok(member);
         }
 
         [HttpPost]
         public IActionResult Post(GroupMember member)
         {
-            return;
+           var result = _context.AddMember(member);
+           
+            if (result == 0)
+            {
+                return StatusCode(500, "An error occured");
+            }
+            return Ok();
         }
+            
+        
 
-        [HttpPut("{id?}")]
+        [HttpPut]
         public IActionResult Put(GroupMember member)
         {
-            
+            var result = _context.UpdateMember(member);
+            if (result == null)
+            {
+                return NotFound(member);
+            }
+            if (result == 0)
+            {
+                return StatusCode(500, "An error occured");
+            }
+            return Ok();
         }
 
-       
+
+
 
         [HttpDelete("{id?}")]
         public IActionResult Delete(int id)
         {
-            var member = _context.RemoveMember(id);
+            var result = _context.RemoveMember(id);
 
-            if (member == null)
+            if (result == null)
+            {
                 return NotFound(id);
-
-            if (string.IsNullOrEmpty(member.Name))
-                return StatusCode(500, "An error occured");
-
-            return Ok();
+                
+            }
+           
+            return NoContent();
             
         }
 

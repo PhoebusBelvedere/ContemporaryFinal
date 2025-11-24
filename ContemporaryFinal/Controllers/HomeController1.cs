@@ -6,9 +6,6 @@ namespace ContemporaryFinal.Controllers
     [Route("[controller]")]
     public class HomeController1 : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

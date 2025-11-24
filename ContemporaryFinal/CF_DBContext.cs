@@ -37,6 +37,24 @@ namespace ContemporaryFinal
                     Program = "Information Technology",
                     SchoolYear = "Junior"
 
+                },
+                new GroupMember
+                {
+                    Id = 3,
+                    Name = "Joshua Hampton",
+                    BirthDate = new DateTime(2005, 4, 10),
+                    Program = "Information Technology",
+                    SchoolYear = "Junior"
+
+                },
+                new GroupMember
+                {
+                    Id = 4,
+                    Name = "Han Nguyen",
+                    BirthDate = new DateTime(2004, 3, 17),
+                    Program = "Information Technology",
+                    SchoolYear = "Senior"
+
                 }
 
 

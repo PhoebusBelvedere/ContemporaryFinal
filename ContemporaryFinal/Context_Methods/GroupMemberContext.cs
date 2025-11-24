@@ -21,7 +21,7 @@ namespace ContemporaryFinal.Context_Methods
             return _context.GroupMembers.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
-        public GroupMember RemoveMember(int id)
+        public int? RemoveMember(int id)
         {
             var member = this.GetMemberById(id);
             if (member == null)
@@ -32,11 +32,11 @@ namespace ContemporaryFinal.Context_Methods
             {
                 _context.GroupMembers.Remove(member);
                 _context.SaveChanges();
-                return member;
+                return 1;
             }
             catch (Exception)
             {
-                return new GroupMember();
+                return 0;
             }
         }
 
