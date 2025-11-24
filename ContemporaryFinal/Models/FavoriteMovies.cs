@@ -1,6 +1,6 @@
-﻿namespace ContemporaryFinal.Models
+namespace ContemporaryFinal.Models
 {
-    public class FavoriteMovies
+    public class FavoriteMovie
     {
         public int Id { get; set; }
         public string MemberName { get; set; }

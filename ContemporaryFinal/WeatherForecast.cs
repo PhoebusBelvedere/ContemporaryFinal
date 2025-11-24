@@ -1,3 +1,4 @@
+/*
 namespace ContemporaryFinal
 {
     public class WeatherForecast
@@ -11,3 +12,5 @@ namespace ContemporaryFinal
         public string? Summary { get; set; }
     }
 }
+
+*/
