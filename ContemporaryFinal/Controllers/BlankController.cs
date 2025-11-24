@@ -4,8 +4,8 @@ namespace ContemporaryFinal.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HomeController2 : ControllerBase
+    public class BlankController : ControllerBase
     {
-       
+        
     }
 }

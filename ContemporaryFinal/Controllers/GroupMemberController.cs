@@ -41,7 +41,7 @@ namespace ContemporaryFinal.Controllers
            
             if (result == 0)
             {
-                return StatusCode(500, "An error occured");
+                return StatusCode(500, "An error occured");              
             }
             return Ok();
         }
