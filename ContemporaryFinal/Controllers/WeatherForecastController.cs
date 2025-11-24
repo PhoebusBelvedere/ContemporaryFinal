@@ -1,4 +1,4 @@
-/*using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ContemporaryFinal.Controllers
 {
@@ -38,4 +38,3 @@ namespace ContemporaryFinal.Controllers
         }
     }
 }
-*/
